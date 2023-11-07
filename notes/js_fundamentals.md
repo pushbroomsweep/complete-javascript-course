@@ -485,3 +485,79 @@ age >= 18 ? console.log('I like to drink wine 🍷') : console.log('I like to dr
 Since 2016: Annual release, ES2016, ES2017 etc. 
 
 All versions are backwards compatible (old features are never removed)
+
+## Strict mode
+
+Strict mode in JavaScript is a way to opt in to a restricted variant of JavaScript. It was introduced in ECMAScript 5. By enabling strict mode, you can catch common coding bloopers, prevent unsafe actions, and generally make it easier to write "secure" JavaScript.
+
+Add `'use strict';` at the top of the script file.
+
+Among other differences, in strict mode:
+
+- Variables must be declared before they are used
+- Attempts to write to read-only properties will throw an error
+- Attempts to create properties on primitive values will throw an error
+- The this value is undefined in functions that are not methods
+- Deleting undeletable properties will throw an error
+- The with statement is not allowed
+- Evaluated code does not introduce new variables into the surrounding scope
+- The arguments and caller properties of functions are not accessible.
+
+Strict mode helps out in a couple of ways:
+
+- It catches some common coding mistakes, throwing exceptions.
+- It prevents, or throws errors, when relatively "unsafe" actions are taken (such as gaining access to the global object).
+- It disables features that are confusing or poorly thought out.
+
+## Functions
+
+### Syntax 
+
+#### Very simple function 
+
+```js
+function <functionName>() {
+    # functionBody;
+}
+```
+
+#### Function with parameters and return values
+
+```js
+function <functionName>(param1, param2, ...) {
+    # functionBody that uses the params;
+    return Variable;
+}
+```
+
+### Examples
+
+```js
+// defining the function
+function logger() {
+    console.log("Logging something...");
+}
+
+// calling the function
+logger();
+logger();
+```
+
+```js
+// defining the function
+function sayHello(name) {
+    let msg = `Hello, ${name}!`;
+    console.log(msg);
+    return msg;  
+}
+
+// calling the function
+test = sayHello('Ram')  // returns 'Hello, Ram!' into test
+```
+
+```js
+function calculateAge(birthYear) {
+    return 2023 - birthYear;
+}
+```
+
