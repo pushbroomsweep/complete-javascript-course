@@ -1,0 +1,486 @@
+# JavaScript fundamentals
+
+Lecture notes available in `extra/theory-lectures-v2.pdf`
+
+## Hello World! 
+
+Use `Developer Tools > Console` on the browser to try out JS.
+
+#### alert
+
+`alert()` function allows us to provide alerts as a pop-up on the window. 
+
+Example: `alert('Hello World!');`
+
+#### console.log
+
+`console.log()` function allows us to print to the console.
+
+Example: `console.log('Hello World!');`
+
+#### prompt
+
+`prompt()` function allows us to get input from user. 
+
+Example: `prompt("What's your age?");`
+
+#### Single quotes vs Double quotes
+
+In JavaScript, there is no functional difference between single quotes (') and double quotes ("); they are effectively interchangeable and both represent string literals. The choice between single and double quotes is usually a matter of personal or team preference, or it may be dictated by a style guide.
+
+```js
+const greetingSingle = 'Hello, world!';
+const greetingDouble = "Hello, world!";
+```
+
+Both greetingSingle and greetingDouble contain the same string content. JavaScript interprets both the same way.
+
+However, the choice between single and double quotes can affect how you include quotes within the string itself. For instance:
+
+```js
+const sayHelloSingle = 'She said, "Hello, world!"';
+const sayHelloDouble = "She said, 'Hello, world!'";
+```
+
+In sayHelloSingle, double quotes are used inside a string delimited by single quotes. In sayHelloDouble, single quotes are used inside a string delimited by double quotes. If you want to include the same type of quote inside the string as the one used to delimit it, you need to escape the quote using a backslash (\):
+
+```js
+const escapedSingle = 'She said, \'Hello, world!\'';
+const escapedDouble = "She said, \"Hello, world!\"";
+```
+
+Some developers prefer single quotes because it allows for easier inclusion of HTML attributes in strings (which are often delimited by double quotes). Others prefer double quotes for reasons like JSON compatibility, where property names and string values are required to be in double quotes. Ultimately, consistency within your codebase is key. Many linters and formatters enforce a particular style for the sake of consistency.
+
+#### Assign a value to a variable 
+
+`let js = 'amazing'`
+
+#### Check for a condition and show alert if true
+
+`if (js === 'amazing') alert('JS is amazing!')`  (Why triple equals?)
+
+#### Semi-colons
+
+Semi-colons are optional but good practice.
+
+#### Commenting
+
+Single line comments start with `//`  
+Multi-line comments are wrapped between `/*` and `*/`
+
+#### Nice analogy for HTML, CSS and JS
+
+- HTML (noun): `<p></p>` means "paragraph"
+- CSS (adjective): `p{color: red}` means "the paragraph text is red"
+- JS (verb): `p.hide();` means "hide the paragraph"
+
+## Variables
+
+camelCase is the general convention.
+
+`let firstName = "Jonty"`
+
+#### Rules
+
+- cannot start with number
+- can only contain numbers, letters, `_` and `$`
+- cannot be reserved keywords (e.g. `new`)
+- can start with `_` and `$`
+
+#### Conventions
+
+- don't start with uppercase 
+- variables in all uppercase for constants
+- don't use `name` as a variable as this can cause issues
+
+## Data Types
+
+Primitive or Object 
+
+#### 7 primitive data types
+
+| Type      | Description                                         | Example         |
+| --------- | --------------------------------------------------- | --------------- |
+| Number    | All numbers (integers, floating point etc.)         | 23, 3.14        |
+| String    | Text                                                | 'Hello'         |
+| Boolean   | logic                                               | `true`, `false` |
+| Undefined | variable that is not yet defined                    | `let children`; |
+| Null      | empty value                                         | `null`          |
+| Symbol    | Unique values that cannot be changed (since ES2015) |                 |
+| BigInt    | Large integers (since ES2020)                       |                 |
+
+#### Dynamic typing
+
+Similar to Python, no need to define the data type of a value stored in a variable. It is determined automatically. 
+
+#### typeof
+
+`typeof` operator (not a function) gets the type of an object
+
+Example: `typeof true` returns `boolean`. 
+
+Note for accessibility, it also works as a function, i.e. `typeof(true)` will also work. But the preferred pattern is without the parantheses.
+
+#### undefined variable
+
+An undefined variable (i.e. a variable created without assigning a value) will hold the initial value `undefined`. 
+
+```js
+let year;
+console.log(year)  // undefined
+console.log(typeof year)  // "undefined"
+```
+
+#### null variable
+
+`typeof null` will be `object`.
+
+#### let, const and var
+
+`var` is old way of declaring variables (prior to ES6). `let` and `const` are the modern way.
+
+`let` allows us to declare and then reassign the value of a variable (mutable)
+
+```js
+let age = 30;
+age = 31;
+```
+
+`let` also allows us to define undefined variables.
+
+```js
+let year;
+```
+
+`const` is used for variables whose values don't change (basically immutable)
+
+```js
+const birthYear = 1980
+birthYear = 1981;  // this is raise an error.
+```
+
+Use `const` by default and use `let` where you really want to mutate a variable. 
+
+JavaScript won't throw an error if `let` or `const` is not used. Instead, it won't define it in the local scope, but rather in the global scope (bad practice!)
+
+## Operators
+
+#### Math operators
+
+```js
+const now = 2037;
+const ageJonas = now - 1991;
+const ageSarah = now - 2018;
+console.log(ageJonas, ageSarah);
+
+console.log(ageJonas * 2, ageJonas / 10, 2 ** 3);
+// 2 ** 3 means 2 to the power of 3 = 2 * 2 * 2
+```
+
+#### String concatenation
+
+```js
+const firstName = 'Jonas';
+const lastName = 'Schmedtmann';
+console.log(firstName + ' ' + lastName); // Jonas Schmedtmann
+```
+
+#### Assignment operators
+
+```js
+let x = 10 + 5; // 15
+x += 10; // x = x + 10 = 25
+x *= 4; // x = x * 4 = 100
+x++; // x = x + 1
+x--; // x = x - 1
+console.log(x);
+```
+
+#### Comparison operators
+
+```js
+console.log(ageJonas > ageSarah); // >, <, >=, <=
+console.log(ageSarah >= 18);
+
+const isFullAge = ageSarah >= 18;
+
+console.log(now - 1991 > now - 2018);
+```
+
+#### Operator precedence
+
+[MDN Operator Precedence Table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence#table)
+
+## Strings and Template Literals
+
+```js
+const firstName = 'Jonas';
+const job = 'teacher';
+const birthYear = 1991;
+const year = 2037;
+
+// type conversion is done automatically
+const jonas = "I'm " + firstName + ', a ' + (year - birthYear) + ' year old ' + job + '!';
+console.log(jonas);  // I'm Jonas, a 46 years old teacher!
+
+// Template literals (since ES6) are similar to Python f-strings, uses $ instead of f
+// the whole string should be enclosed by backticks, not single or double quotes.
+const jonasNew = `I'm ${firstName}, a ${year - birthYear} year old ${job}!`;
+console.log(jonasNew);
+```
+
+Backticks can also be used for any regular strings.
+
+```js
+console.log(`Just a regular string...`);
+```
+
+#### Multi-line strings
+
+```js
+console.log('String with \n\
+multiple \n\
+lines');
+```
+
+Multi-line strings can also be achieved with template literals (backticks). This is a better way than the above.
+
+```js
+console.log(`String
+multiple
+lines`);
+```
+
+## Conditional statements
+
+### Syntax
+
+#### one line if 
+
+```js
+if (condition) //statement if condition is true; // no need for curly braces
+```
+
+#### simple if-else (one condition)
+
+```js
+if (condition) {
+    // statements if condition is true
+} else {
+    // statements if condition is false
+}
+```
+
+#### complex if-else (multiple conditions)
+
+```js
+if (condition1) {
+    // statements if condition1 is true
+} else if (condition2) {
+    // statements if condition2 is true
+} else if (condition3) {
+    // statements if condition3 is true and so on...
+} else {
+    // statements if none of the above conditions are true
+}
+```
+
+### Example
+
+```js
+const age = 15;
+
+if (age >= 18) {
+  console.log('Sarah can get driving license 🚗');
+} else {
+  const yearsLeft = 18 - age;
+  console.log(`Sarah is too young. Wait another ${yearsLeft} years :)`);
+}
+
+const birthYear = 2012;
+
+let century;  // variables defined inside if-else are not accessible outside
+if (birthYear <= 2000) {
+  century = 20;
+} else {
+  century = 21;
+}
+console.log(century);
+```
+
+```js
+let age = 18;
+
+if (age < 18) {
+    console.log("You are a minor.");
+} else if (age < 21) {
+    console.log("You are a young adult.");
+} else {
+    console.log("You are an adult.");
+}
+```
+
+## Type conversion and Type coercion
+
+```js
+// type conversion (manual)
+const inputYear = '1991';
+console.log(inputYear + 18)  // 199118
+// Type convert inputYear into Number using Number(inputYear)
+console.log(Number(inputYear), inputYear);  // 1991 "1991"
+console.log(Number(inputYear) + 18);  // 2009
+
+console.log(Number('Jonas'));  // NaN 
+console.log(typeof NaN);  // number
+
+console.log(String(23), 23); // "23" 23
+
+// type coercion (automatic)
+// type coercion to string
+console.log('I am ' + 23 + ' years old');  // "I am 23 years old"
+// type coercion to string
+console.log('23' + '10' + 3);  // "23103"
+// type coercion to number (because of - or /)
+console.log('23' - '10' - 3); // 10
+console.log('23' / '2');  // 11.5
+
+let n = '1' + 1; // '11'
+n = n - 1; // 10
+console.log(n);  // 10
+```
+
+## Truthy and Falsy values
+
+Falsy values: `0`, `''`, `undefined`, `null`, `NaN` (evaluates to `false`)
+
+```js
+const money = 100;
+if (money) {  // true
+  console.log("Don't spend it all ;)");  // this will print
+} else {
+  console.log('You should get a job!');
+}
+
+let height = 0;  // even let height; will do the same
+if (height) {  // false
+  console.log('YAY! Height is defined');
+} else {
+  console.log('Height is UNDEFINED');  // this will print
+}
+```
+
+## Double vs Triple equals
+
+In JavaScript, `==` and `===` are both comparison operators, but they differ in how they compare the values they check.
+
+- `==` is the equality operator and performs an abstract comparison. It converts the operands to the same type before making the comparison. This type coercion can lead to unexpected results when comparing values of different types.
+
+- `===` is the strict equality operator and does not perform type coercion. If the operands are of different types, it returns false without attempting to convert them.
+
+```js
+// Using the equality operator (==)
+console.log('1' == 1);   // true because '1' is converted to a number before comparison
+console.log('1' == '1'); // true because both operands are of the same type and value
+console.log(0 == false); // true because 0 is considered falsy in JavaScript, as is false
+
+// Using the strict equality operator (===)
+console.log('1' === 1);   // false because the type of the operands is different
+console.log('1' === '1'); // true because both the type and value are the same
+console.log(0 === false); // false because the type of the operands is different
+```
+
+## Logical operators
+
+AND: `&&`
+OR: `||`
+NOT: `!`
+
+Return values similar to Python. 
+
+```js
+const a = 'Hello'
+const b = 'World'
+
+console.log(a && b)  // prints 'World'
+console.log(a || b)  // prints 'Hello'
+console.log(!a)      // prints false
+```
+
+## switch
+
+preferred to complicated if-else statements
+
+### Syntax
+
+```js
+switch (variable) { 
+    case value1: // variable === value1
+        // statements to run for first case 
+        break;  // need break otherwise it continues executing down
+    case value2: 
+    case value3:
+        // statements to run for second or third case
+        break;
+    // and so on
+    default:
+        // statements to run for default case (similar to else in if-else)
+}
+```
+
+### Example
+
+```js
+const day = 'friday';
+
+switch (day) {
+  case 'monday': // day === 'monday'
+    console.log('Plan course structure');
+    console.log('Go to coding meetup');
+    break;
+  case 'tuesday':
+    console.log('Prepare theory videos');
+    break;
+  case 'wednesday':
+  case 'thursday':
+    console.log('Write code examples');
+    break;
+  case 'friday':
+    console.log('Record videos');
+    break;
+  case 'saturday':
+  case 'sunday':
+    console.log('Enjoy the weekend :D');
+    break;
+  default:
+    console.log('Not a valid day!');
+}
+```
+
+## Ternary operator
+
+### Syntax
+
+```js
+condition ? statement if true : statement if false
+```
+
+### Example
+
+```js
+const age = 23;
+age >= 18 ? console.log('I like to drink wine 🍷') : console.log('I like to drink water 💧');
+```
+
+## Javascript versions and standards
+
+1995: Javascript was released
+
+1997: ECMAScript 1 (ES1) - first official standard of JS
+
+2009: ECMAScript 5 (ES5)
+
+2015: ES6/ES2015 - biggest update to JS till date
+
+Since 2016: Annual release, ES2016, ES2017 etc. 
+
+All versions are backwards compatible (old features are never removed)
