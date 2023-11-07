@@ -143,6 +143,7 @@ console.log(typeof year)  // "undefined"
 
 ```js
 let age = 30;
+let age = 30;
 age = 31;
 ```
 
@@ -156,7 +157,7 @@ let year;
 
 ```js
 const birthYear = 1980
-birthYear = 1981;  // this is raise an error.
+birthYear = 1981;  // this will raise an error.
 ```
 
 Use `const` by default and use `let` where you really want to mutate a variable. Avoid `var` where possible.
