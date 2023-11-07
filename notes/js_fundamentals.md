@@ -517,7 +517,7 @@ Strict mode helps out in a couple of ways:
 
 ```js
 function <functionName>() {
-    # functionBody;
+    // functionBody;
 }
 ```
 
@@ -525,9 +525,25 @@ function <functionName>() {
 
 ```js
 function <functionName>(param1, param2, ...) {
-    # functionBody that uses the params;
-    return Variable;
+    // functionBody that uses the params;
+    return obj;
 }
+```
+
+Above are Function declarations. 
+
+Below is function expression. Function declarations can be called before they are defined in the code! But we can't do that for function expressions. Internally, this happens because of a process called hoisting.
+
+#### Anonymous function assigned to a variable (function expression)
+
+```js
+const varName = function (param1, ...) {
+    // functionBody;
+    return obj;
+}
+
+// Calling the function varName
+varName(arg1, ...)
 ```
 
 ### Examples
@@ -561,3 +577,182 @@ function calculateAge(birthYear) {
 }
 ```
 
+## Arrow functions
+
+Introduced in ES6. Looks similar to lambda functions in Python (I think)
+
+### Syntax
+
+#### Simple arrow function
+
+```js
+const varName = param => output;
+```
+
+#### More complex arrow function (multiple lines of code in function)
+
+```js
+const varName = (param1, param2, ...) => {
+    // functionBody;
+    // include return statement here
+}
+```
+
+```js
+// Function expression
+const calcAge = function (birthYear) {
+    return 2023 - birthYear;
+}
+
+// Equivalent arrow function
+const calcAge = birthYear => 2023 - birthYear;
+```
+
+Arrow functions don't get `this` keyword as regular functions!
+
+## Arrays
+
+### Creating a new array 
+
+Similar to Python lists
+
+```js
+const years = new Array(1991, 2004, 2023);
+```
+
+```js
+const fruits = ['Apple', 'Pineapple', 'Orange'];
+console.log(fruits);
+```
+
+### Accessing elements
+
+Uses square brackets
+
+```js
+console.log(fruits[0]);  // 'Apple'
+```
+
+### Length of array
+
+can be done using `<arrayName>.length`
+
+```js
+console.log(fruits.length);  // 3
+```
+
+### Assiging values
+
+```js
+fruits[1] = 'Mango'; // 'Mango' replaces 'Pineapple'
+```
+
+Only primitive data types in JS are immutable. Arrays are mutable.
+
+### Can hold different types
+
+```js
+const info = ['Name', 2023, ['A', 'B', 'C']];
+```
+
+## Array methods
+
+```js
+const fruits = ['Apple', 'Mango', 'Orange'];
+```
+
+### push
+
+Adds element to the end of the array (similar to python list.append) 
+```js
+fruits.push('Pear') // Pear gets appended to fruits
+```
+
+### unshift
+
+Adds element to the beginning of the array
+
+### pop
+
+Removes last element from array and returns the element
+
+### shift
+
+Removes first element from array and shifts everything else to the left
+
+### indexOf
+
+Returns index of the required element. Unknown elements will return -1. 
+
+### includes
+
+ES6 method. Returns `true` if element is in array, else `false`. Uses strict equality (`===`) for the check.
+
+## Objects 
+
+Similar to Python dictionaries
+
+```js
+const info = {
+    firstName: 'Ki',
+    lastName: 'Blitzer',
+    year: 1991,
+    myList: ['A', 'B', 'C']
+};
+console.log(info);
+``` 
+
+### Accessing properties (values) using property names (keys)
+
+```js
+console.log(info.firstName);  // dot notation or member access
+console.log(info['firstName'];  // brackets notation or computed member access
+```
+
+Brackets notation is useful as the property name can be dynamically computed. 
+
+```js
+console.log(info['first' + 'Name']);
+```
+
+### Adding properties to object
+
+```js
+info.country = 'UK';
+info['twitter'] = '@kiblitzer';
+```
+
+## Object methods
+
+Function expressions can be included as a key value pair (by replacing equals with colon).
+
+Other properties of the object are accessible inside this function as attributes of `this` keyword.
+
+```js
+const info = {
+    firstName: 'Ki',
+    lastName: 'Blitzer',
+    year: 1991,
+    myList: ['A', 'B', 'C']
+    calcAge: function() {
+        return 2023 - this.year;
+    }
+};
+console.log(info);
+``` 
+
+This function can also be used to assign a new property by returning this.propertyName.
+
+```js
+const info = {
+    firstName: 'Ki',
+    lastName: 'Blitzer',
+    year: 1991,
+    myList: ['A', 'B', 'C']
+    calcAge: function() {
+        this.age = 2023 - this.year;
+        return this.age;
+    }
+};
+console.log(info);
+``` 
