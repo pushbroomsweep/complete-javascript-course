@@ -159,7 +159,7 @@ const birthYear = 1980
 birthYear = 1981;  // this is raise an error.
 ```
 
-Use `const` by default and use `let` where you really want to mutate a variable. 
+Use `const` by default and use `let` where you really want to mutate a variable. Avoid `var`.
 
 JavaScript won't throw an error if `let` or `const` is not used. Instead, it won't define it in the local scope, but rather in the global scope (bad practice!)
 
