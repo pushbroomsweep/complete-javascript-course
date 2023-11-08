@@ -30,6 +30,12 @@ console.log(document.querySelector('.message').textContent);
 console.log(document.querySelector('.guess').value);
 ```
 
+### Getting elements by id
+
+```js
+console.log(document.getElementById('id1'));
+```
+
 ### Setting text values
 
 ```js
