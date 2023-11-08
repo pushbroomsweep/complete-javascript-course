@@ -756,3 +756,232 @@ const info = {
 };
 console.log(info);
 ``` 
+
+### Object.keys(obj)
+
+Returns the properties (keys) of `obj` as an array
+
+### Object.values(obj)
+
+Returns the values of the properties (keys) of `obj` as an array
+
+### Object.entries(obj)
+
+Returns the key-value pairs as inner arrays of an array
+
+## For loop
+
+### Syntax
+
+```js
+for (let varStart = initValue; stopCondition; varIncrement) {
+    // body of loop;
+}
+```
+
+### Example
+
+```js
+for (let x=1; x<10; x++) {
+  console.log(`${x**2}`);
+}
+```
+
+### Example - Looping through an array
+
+```js
+for(let i=0; i<fruits.length; i++){
+  console.log(fruits[i])
+}
+```
+
+Alternative using `for...of` loop
+
+```js
+for(fruit of fruits){
+  console.log(fruit)
+  if(fruit === 'orange') {
+    break;
+  }
+}
+```
+
+### Example - Looping through an object
+
+Using `for...in` loop
+
+```js
+const info = {
+  name: 'Ki',
+    num: 123,
+  location: 'London'
+} 
+for(prop in info) {
+  console.log(`${prop}: ${info[prop]}`)
+}
+```
+
+### For-else loop
+
+The else block will be executed after the for loop completes, unless a break statement is encountered.
+
+```js
+for i in range(5):
+    print(i)
+else:
+    print("Loop completed successfully")
+```
+
+### Break and continue
+
+Break and continue work the same way as in Python.
+
+```js
+for (let i = 0; i < 10; i++) {
+  if (i === 5) {
+    break; // stops the loop when i is 5
+  }
+  if (i % 2 === 0) {
+    continue; // skips the rest of the loop body when i is even
+  }
+  console.log(i); // this will log 1, 3, and then break out of the loop at 5
+}
+```
+
+### forEach method
+
+Arrays have a forEach method which can be used to loop over the elements.
+
+```js
+fruits.forEach(element => {
+               console.log(element)
+               }) 
+```
+
+The `forEach` method will invoke the callback function provided to it once for each element in array. For each invocation, `forEach` passes the current element as an argument to the callback function. The callback function then logs the element to the console.
+
+The callback function for forEach can take up to three arguments:
+
+    The current element being processed in the array.
+    The index of the current element being processed.
+    The array that forEach is being applied to.
+
+forEach does not mutate the array on which it is called, but the callback function can modify the array.
+
+## Why can't I write obj.keys() directly (but rather do it as Object.keys(obj)) when I can do array.forEach()?
+
+Object.keys() is a static method on the Object constructor that is not available on instance objects directly. This is why you can't call .keys() on an instance of an object.
+
+On the other hand, forEach() is a prototype method on the Array constructor, which means it is available on all array instances. This is because all arrays inherit from Array.prototype, which has the forEach() method.
+
+## Static method vs Prototype method
+
+A static method is a function that is a property of the constructor itself, not the instances created by that constructor. It's called on the class (or constructor function) itself, not on an instance of the class.
+
+A prototype method is a function that is a property of the constructor's prototype. This means that it is available to all instances of the class, as they inherit properties and methods from the prototype.
+
+```js
+function MyClass() {
+  // Constructor function
+}
+
+// Static method
+MyClass.staticMethod = function() {
+  console.log('I am a static method');
+};
+
+// Prototype method
+MyClass.prototype.prototypeMethod = function() {
+  console.log('I am a prototype method');
+};
+
+// Usage
+MyClass.staticMethod(); // Works
+// MyClass.prototypeMethod(); // Uncaught TypeError: MyClass.prototypeMethod is not a function
+
+const myInstance = new MyClass();
+myInstance.prototypeMethod(); // Works
+// myInstance.staticMethod(); // Uncaught TypeError: myInstance.staticMethod is not a function
+
+```
+
+In the context of JavaScript's Object and Array:
+
+- `Object.keys()` is a static method because it's called on the Object class itself.
+- `array.forEach()` is a prototype method because it's called on an instance of an Array.
+
+## While loop
+
+### Syntax
+
+```js
+while (condition) {
+  // loop body; 
+}
+```
+
+### Example 
+
+```js
+let i = 0;
+while (i < 5) {
+    console.log(i);
+    i++;
+}
+```
+
+## Do-while loop
+
+The do-while loop will execute the block of code once, before checking if the condition is true, then it will repeat the loop as long as the condition is true.
+
+### Syntax
+
+```js
+do {
+  // loop body;
+} while (condition);
+```
+
+### Example
+
+```js
+let i = 0;
+do {
+    console.log(i);
+    i++;
+} while (i < 5);
+```
+
+## While-else loop
+
+Similar to the for-else loop, the else block will be executed after the while loop completes, unless a break statement is encountered.
+
+```js
+i = 0
+while i < 5:
+    print(i)
+    i += 1
+else:
+    print("Loop completed successfully")
+```
+
+## Try-catch-finally
+
+```js
+try {
+  // Code that may throw an error
+} catch (error) {
+  // Code to handle the error
+} finally {
+  // Code that will run regardless of try / catch outcome
+}
+```
+
+JavaScript has an error hierarchy with a number of different error types that can be thrown. The base type is Error, and there are several built-in error constructors that extend from it, such as:
+
+- EvalError: An error regarding the global eval() function.
+- RangeError: An error when a value is not in the set or range of allowed values.
+- ReferenceError: An error when trying to reference a variable that is not defined.
+- SyntaxError: An error related to syntax in the code.
+- TypeError: An error when a value is not of the expected type.
+- URIError: An error when encodeURI() or decodeURI() are passed invalid parameters.
