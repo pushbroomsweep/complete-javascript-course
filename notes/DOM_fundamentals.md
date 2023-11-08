@@ -67,3 +67,48 @@ document.querySelector('.check').addEventListener(
 ```
 
 The first argument of `addEventListener` method is `click`. Second argument is an anonymous function that does something.
+
+## Manipulate class list
+
+```html
+<div class="modal hidden">
+    <p></p>
+</div>
+```
+
+```js
+const modal = document.querySelector('.modal');
+modal.classList.remove('hidden')  // this will remove hidden class
+// Note: we are not using .hidden, that notation is only for selectors.
+
+modal.classList.add('hidden')  // this will add hidden class again
+```
+
+Check if class is present
+
+```js
+modal.classList.contains('hidden')  // returns a boolean whether hidden is a class or not.
+```
+
+## Listen for keyboard events
+
+keydown: when a key is pressed
+keypress: when a key is depressed
+keyup: when a key is released
+
+```js
+// the message is logged any time a key is pressed
+document.addEventListener('keydown', function () {
+    console.log('A key was pressed')
+});
+```
+
+To look for a specific key, add an event parameter to the function
+
+```js
+document.addEventListener('keydown', function (e) {
+    console.log(e);  // this will log info about the key pressed
+    console.log(e.key);  // this will give the actual key pressed
+
+});
+```
