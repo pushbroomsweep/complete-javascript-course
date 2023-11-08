@@ -18,6 +18,8 @@ Example: `alert('Hello World!');`
 
 Example: `console.log('Hello World!');`
 
+There is also `console.warn()`, `console.error()` and `console.table()`. 
+
 #### prompt
 
 `prompt()` function allows us to get input from user. 
